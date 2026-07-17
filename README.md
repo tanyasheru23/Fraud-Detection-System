@@ -2,8 +2,10 @@
 
 A machine learning project for detecting fraudulent online payment transactions using exploratory data analysis, feature engineering, and ensemble learning methods.
 
-> **Status:** Notebook Version Completed ✅  
-> Repository structure, API, deployment, and frontend will be added in the next phase.
+> **Status:**
+> Notebook Version Completed ✅  
+> Repository structure ✅
+> API deployment, and frontend will be added in the next phase.
 
 ---
 
@@ -82,7 +84,6 @@ The notebook is currently available in this repository.
 
 The next phase of the project will include:
 
-- Model serialization
 - Modular Python package
 - FastAPI backend
 - Interactive frontend
