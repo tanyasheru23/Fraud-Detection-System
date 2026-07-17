@@ -2,12 +2,20 @@
 
 A production-style Machine Learning project for detecting fraudulent online payment transactions using feature engineering, ensemble learning, and a modular inference pipeline.
 
-> **Status:** Notebook Version Completed ✅  
-> Repository structure, API, deployment, and frontend will be added in the next phase.
+> **Project Status**
+>
+> - Exploratory Data Analysis (EDA) ✅
+> - Feature Engineering ✅
+> - Model Training & Evaluation ✅
+> - Modular Python Package ✅
+> - Model Serialization & Inference Pipeline ✅
+> - FastAPI Backend 🚧
+> - Frontend 🚧
+> - Docker Deployment 🚧
 
 ---
 
-## Project Overview
+# Project Overview
 
 Online payment fraud poses a significant challenge due to its highly imbalanced nature and the financial losses associated with fraudulent transactions.
 
@@ -103,31 +111,18 @@ Domain-inspired features include:
 # Model Performance
 
 | Metric | Score |
-|--------|------:|
-| Accuracy | 99.9997% |
-| Precision | 100.00% |
-| Recall | 99.76% |
-| F1 Score | 99.88% |
-| ROC-AUC | 99.94% |
+|---------|-------:|
+| Accuracy | **99.9997%** |
+| Precision | **100.00%** |
+| Recall | **99.76%** |
+| F1 Score | **99.88%** |
+| ROC-AUC | **99.92%** |
+
+The optimized Random Forest generalized well on unseen data with nearly identical training and testing performance while missing only four fraudulent transactions in the held-out test set.
 
 ---
 
-## Repository (Work in Progress)
-
-The notebook is currently available in this repository.
-
-The next phase of the project will include:
-
-- Model serialization
-- Modular Python package
-- FastAPI backend
-- Interactive frontend
-- Docker support
-- Cloud deployment
-
----
-
-## Tech Stack
+# Tech Stack
 
 - Python
 - Pandas
