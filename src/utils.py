@@ -77,3 +77,18 @@ def save_results(
     )
 
     plt.close()
+
+def load_model():
+    """
+    Load the trained model and feature column names.
+
+    Returns:
+        tuple:
+            model
+            feature_columns
+    """
+
+    model = joblib.load("models/fraud_detector_rf.pkl")
+    feature_columns = joblib.load("models/feature_columns.pkl")
+
+    return model, feature_columns
