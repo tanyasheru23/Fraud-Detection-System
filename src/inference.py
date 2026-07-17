@@ -57,7 +57,7 @@ def main():
     Example inference using a sample transaction.
     """
 
-    sample = {
+    non_fraud_sample = {
         "step": 1,
         "type": "PAYMENT",
         "amount": 11668.14,
@@ -69,7 +69,19 @@ def main():
         "newbalanceDest": 0.0
     }
 
-    prediction, probability = predict(sample)
+    fraud_sample = {
+        "step": 44,
+        "type": "TRANSFER",
+        "amount": 534255.94,
+        "nameOrig": "C967325382",
+        "oldbalanceOrg": 534255.94,
+        "newbalanceOrig": 0.0,
+        "nameDest": "C1259079602",
+        "oldbalanceDest": 0.0,
+        "newbalanceDest": 0.0
+    }
+
+    prediction, probability = predict(fraud_sample)
 
     print("=" * 40)
     print("Fraud Detection Result")
