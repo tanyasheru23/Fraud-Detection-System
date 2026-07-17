@@ -22,6 +22,7 @@ env/
 # Jupyter
 # ------------------------------
 .ipynb_checkpoints/
+
 # Dataset
 data/raw/*
 data/processed/*
@@ -30,3 +31,9 @@ data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/README.md
+
+# ------------------------------
+# Model Files (optional)
+# ------------------------------
+models/*.pkl
+models/*.joblib

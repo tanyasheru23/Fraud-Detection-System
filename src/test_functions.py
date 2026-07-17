@@ -2,7 +2,7 @@ import pandas as pd
 from feature_engineering import feature_engineer
 from pre_processing import process
 
-df = pd.read_csv("data/raw/onlinefraud.csv/onlinefraud.csv")
+df = pd.read_csv("data/raw/onlinefraud/onlinefraud.csv")
 
 sample = df.sample(n=10)
 
