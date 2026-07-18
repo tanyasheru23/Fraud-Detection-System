@@ -4,7 +4,17 @@ const spinner = document.getElementById("loading-spinner");
 predictBtn.addEventListener("click", predictTransaction);
 
 async function predictTransaction() {
+
+    const form = document.getElementById("fraudForm");
+
+    if (!form.checkValidity()) {
+        console.log("Validation failed");
+        form.reportValidity();
+        return;
+    }
+
     predictBtn.disabled = true;
+
     const transaction = {
 
         step: Number(document.getElementById("step").value),
