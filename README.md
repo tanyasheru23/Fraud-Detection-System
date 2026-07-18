@@ -1,6 +1,6 @@
 # Online Payment Fraud Detection
 
-A production-style Machine Learning project for detecting fraudulent online payment transactions using feature engineering, ensemble learning, and a modular FastAPI inference pipeline.
+A production-style Machine Learning project for detecting fraudulent online payment transactions using feature engineering, ensemble learning, FastAPI, and an interactive web interface.
 
 > **Project Status**
 >
@@ -10,29 +10,33 @@ A production-style Machine Learning project for detecting fraudulent online paym
 > - Modular Python Package ✅
 > - Model Serialization & Inference Pipeline ✅
 > - FastAPI Backend ✅
-> - Frontend 🚧
+> - Interactive Frontend ✅
 > - Docker Deployment 🚧
+> - Cloud Deployment 🚧
 
 ---
 
 # Project Overview
 
-Online payment fraud poses a significant challenge due to its highly imbalanced nature and the financial losses associated with fraudulent transactions.
+Online payment fraud is a highly imbalanced binary classification problem with significant financial implications.
 
-This project implements an end-to-end fraud detection pipeline, covering the complete machine learning workflow:
+This project implements an end-to-end machine learning pipeline that transforms a research notebook into a production-style application. It includes data preprocessing, feature engineering, model optimization, a reusable inference pipeline, a REST API using FastAPI, and an interactive frontend for real-time fraud prediction.
 
-- Exploratory Data Analysis
-- Feature Engineering
-- Data Preprocessing
-- Model Training
-- Hyperparameter Optimization
+---
+
+# Features
+
+- Exploratory Data Analysis (EDA)
+- Domain-inspired Feature Engineering
+- Data Preprocessing Pipeline
+- Random Forest Hyperparameter Optimization
 - Model Evaluation
 - Feature Importance Analysis
-- Model Serialization
-- Reusable Inference Pipeline
+- Model Serialization using Joblib
+- Modular Python Package
 - REST API using FastAPI
-
-The notebook implementation has been refactored into a modular Python package, making it suitable for deployment and real-world inference.
+- Interactive HTML/CSS/JavaScript Frontend
+- Real-time Fraud Prediction
 
 ---
 
@@ -41,7 +45,7 @@ The notebook implementation has been refactored into a modular Python package, m
 - **Source:** Kaggle – PaySim Mobile Money Simulation Dataset
 - **Transactions:** ~6.3 Million
 - **Fraud Rate:** ~0.12%
-- **Task:** Binary Classification
+- **Problem Type:** Binary Classification
 
 ---
 
@@ -53,8 +57,11 @@ Fraud-Detection-System/
 ├── api/
 │   ├── main.py
 │   ├── schema.py
-│   └── templates/
-│       └── index.html
+│   ├── templates/
+│   │     └── index.html
+│   └── static/
+│         ├── style.css
+│         └── script.js
 │
 ├── data/
 │   ├── raw/
@@ -83,15 +90,27 @@ Fraud-Detection-System/
 
 # Machine Learning Pipeline
 
-- Exploratory Data Analysis
-- Feature Engineering
-- Data Preprocessing
-- Baseline Model Training
-- Hyperparameter Optimization
-- Model Evaluation
-- Feature Importance Analysis
-- Model Serialization
-- FastAPI Inference Pipeline
+```
+Raw Dataset
+      │
+      ▼
+Feature Engineering
+      │
+      ▼
+Preprocessing
+      │
+      ▼
+Random Forest
+      │
+      ▼
+Model Serialization
+      │
+      ▼
+FastAPI Backend
+      │
+      ▼
+Interactive Frontend
+```
 
 ---
 
@@ -101,25 +120,23 @@ Fraud-Detection-System/
 - Random Forest
 - XGBoost
 
-After experimentation and hyperparameter optimization, the optimized Random Forest model was selected as the final production model.
+Following experimentation and hyperparameter optimization, the **Random Forest** model was selected as the final production model.
 
 ---
 
-# Feature Engineering
-
-Several domain-inspired features were engineered, including:
+# Engineered Features
 
 - Balance Difference
 - Balance Error
-- Transaction Fraction
 - Fraction Used
 - Remaining Fraction
+- Transaction Fraction
+- Cash Transfer Indicator
 - Full Balance Transfer
 - Zero Balance Indicators
 - Balance Change Indicators
-- Cash Transfer Indicator
 
-These engineered features significantly improved fraud detection performance compared to using the raw dataset alone.
+These engineered features significantly improved fraud detection performance over the original feature set.
 
 ---
 
@@ -133,7 +150,7 @@ These engineered features significantly improved fraud detection performance com
 | F1 Score | **99.88%** |
 | ROC-AUC | **99.92%** |
 
-The optimized Random Forest generalized well on unseen data while missing only four fraudulent transactions in the held-out test set.
+The optimized Random Forest generalized well on unseen data while missing only four fraudulent transactions in the held-out test dataset.
 
 ---
 
@@ -155,19 +172,19 @@ python -m venv .venv
 
 Activate the environment
 
-### Windows
+Windows
 
 ```bash
 .venv\Scripts\activate
 ```
 
-### Linux / macOS
+Linux / macOS
 
 ```bash
 source .venv/bin/activate
 ```
 
-Install the dependencies
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -177,31 +194,31 @@ pip install -r requirements.txt
 
 # Training
 
-Place the PaySim dataset inside:
+Place the PaySim dataset inside
 
-```text
+```
 data/raw/
 ```
 
-Run the training pipeline
+Run
 
 ```bash
 python -m src.train
 ```
 
-Training automatically:
+The training pipeline automatically
 
 - Performs feature engineering
-- Preprocesses the dataset
+- Applies preprocessing
 - Trains the optimized Random Forest model
 - Evaluates model performance
 - Saves the trained model
 - Saves feature columns
-- Stores evaluation artifacts inside the `results/` directory
+- Stores evaluation artifacts
 
 ---
 
-# Running the API
+# Running the Application
 
 Start the FastAPI server
 
@@ -209,18 +226,16 @@ Start the FastAPI server
 uvicorn api.main:app --reload
 ```
 
-Once the server starts:
+Application
+
+```
+http://127.0.0.1:8000/
+```
 
 Swagger Documentation
 
 ```
 http://127.0.0.1:8000/docs
-```
-
-Home Page
-
-```
-http://127.0.0.1:8000/
 ```
 
 ---
@@ -252,21 +267,41 @@ http://127.0.0.1:8000/
     "prediction": "Fraud Transaction"
 }
 ```
+# Web Page - Example Fraud Predictions
+- Legitimate Transaction
+<img width="1230" height="863" alt="Screenshot 2026-07-18 183851" src="https://github.com/user-attachments/assets/c398defa-2e98-42a5-a15e-234e72ab36f2" />
+
+- Fraud Transaction
+- <img width="1247" height="860" alt="Screenshot 2026-07-18 183813" src="https://github.com/user-attachments/assets/e40fbf92-6c0f-41fa-8301-fcb97016c487" />
 
 ---
 
 # Tech Stack
+
+### Machine Learning
 
 - Python
 - Pandas
 - NumPy
 - Scikit-learn
 - XGBoost
-- Matplotlib
-- Seaborn
+- Joblib
+
+### Backend
+
 - FastAPI
 - Pydantic
-- Joblib
+
+### Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+### Visualization
+
+- Matplotlib
+- Seaborn
 
 ---
 
@@ -276,30 +311,36 @@ http://127.0.0.1:8000/
 
 - End-to-End Exploratory Data Analysis
 - Feature Engineering
-- Data Preprocessing Pipeline
-- Model Training & Evaluation
+- Data Preprocessing
+- Model Training
 - Hyperparameter Optimization
 - Feature Importance Analysis
 - Model Serialization
 - Reusable Inference Pipeline
 - FastAPI Backend
+- Interactive Frontend
 
 ## Upcoming
 
-- Interactive Frontend
 - Docker Containerization
 - Cloud Deployment
 - SHAP Explainability
-- Real-time Prediction Dashboard
+- Model Monitoring
 
 ---
 
 # Future Improvements
 
-- SHAP-based Explainability
+- Docker Support
+- Cloud Deployment
+- SHAP Explainability
 - Drift Detection
 - Model Monitoring
 - Sequence-aware Fraud Detection
-- Real-time Streaming Inference
 - CI/CD Pipeline
-- Cloud Deployment
+
+---
+
+## License
+
+This project is intended for educational and portfolio purposes.
