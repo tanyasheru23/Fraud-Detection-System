@@ -11,12 +11,22 @@ from fastapi.templating import Jinja2Templates
 
 from .schema import Transaction, FraudPrediction
 from src.inference import predict
+from fastapi.staticfiles import StaticFiles
+from src.utils import load_model
+
+model, feature_columns = load_model()
 
 
 app = FastAPI(
     title="Online Payment Fraud Detection API",
     description="REST API for predicting fraudulent online payment transactions.",
     version="1.0.0"
+)
+
+app.mount(
+    "/static",
+    StaticFiles(directory="api/static"),
+    name="static"
 )
 
 templates = Jinja2Templates(directory="api/templates")
@@ -43,7 +53,9 @@ def prediction_result(transaction: Transaction):
     try:
 
         prediction, probability = predict(
-            transaction.model_dump()
+            transaction.model_dump(),
+            model,
+            feature_columns
         )
 
         result = (

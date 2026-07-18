@@ -13,13 +13,17 @@ from .pre_processing import process
 from .utils import load_model
 
 
-def predict(data: dict):
+def predict(data: dict, model, feature_columns):
     """
     Predict whether a transaction is fraudulent.
 
     Args:
         data (dict):
             Transaction details.
+        model:
+            loaded model
+        feature_columns:
+            loaded feature columns
 
     Returns:
         tuple:
@@ -36,8 +40,8 @@ def predict(data: dict):
     # Preprocessing
     data_df = process(data_df)
 
-    # Load trained model and feature columns
-    model, feature_columns = load_model()
+    # # Load trained model and feature columns
+    # model, feature_columns = load_model()
 
     # Match training feature order
     data_df = data_df.reindex(

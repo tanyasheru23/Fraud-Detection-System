@@ -1,0 +1,245 @@
+/* ------------------ BODY ------------------ */
+
+body{
+    margin:0;
+    padding:30px;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#f4f7fb;
+    color:#1f2937;
+}
+
+
+/* ---------------- HEADER ---------------- */
+
+.header-container{
+
+    text-align:center;
+    margin-bottom:40px;
+}
+
+h1{
+
+    color:#1e3a8a;
+    font-size:42px;
+    margin-bottom:15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.header-container p{
+
+    font-size:20px;
+    color:#4b5563;
+}
+
+.header-container a{
+
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.header-container a:hover{
+
+    text-decoration:underline;
+}
+
+
+/* ------------- MAIN LAYOUT -------------- */
+
+.main-content{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:40px;
+
+    flex-wrap:wrap;
+}
+
+
+/* ------------ FORM CARD ---------------- */
+
+.container{
+
+    background:white;
+
+    padding:35px;
+
+    width:700px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0px 5px 20px rgba(0,0,0,0.08);
+}
+
+
+/* ------------ PREDICTION CARD ---------- */
+
+.prediction-card{
+
+    width:300px;
+
+    height:420px;
+
+    background:white;
+
+    border-radius:15px;
+
+    box-shadow:
+    0px 5px 20px rgba(0,0,0,0.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:20px;
+}
+
+
+/* ---------------- HEADINGS ---------------- */
+
+h2{
+
+    color:#1e3a8a;
+
+    margin-bottom:30px;
+}
+
+.prediction-card h3{
+
+    font-size:28px;
+
+    color:#16a34a;
+
+    margin-bottom:30px;
+}
+
+
+/* ---------------- LABELS ---------------- */
+
+label{
+
+    display:inline-block;
+
+    width:220px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+}
+
+
+/* ---------------- INPUTS ---------------- */
+
+.long-input{
+
+    width:300px;
+
+    padding:10px;
+
+    border:1px solid #cbd5e1;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    transition:0.2s;
+}
+
+
+.long-input:focus{
+
+    outline:none;
+
+    border:1px solid #2563eb;
+
+    box-shadow:0 0 5px rgba(37,99,235,0.3);
+}
+
+
+/* ---------------- BUTTON ---------------- */
+
+#predictBtn{
+
+    width:250px;
+
+    margin-left:225px;
+
+    margin-top:15px;
+
+    padding:12px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+
+#predictBtn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+}
+
+
+/* ---------------- HORIZONTAL LINE ---------------- */
+
+hr{
+
+    border:none;
+
+    border-top:1px solid #e5e7eb;
+
+    margin:30px 0;
+}
+
+.spinner {
+    display: none;
+    width: 40px;
+    height: 40px;
+
+    border: 5px solid #dbeafe;
+    border-top: 5px solid #2563eb;
+
+    border-radius: 50%;
+
+    animation: spin 1s linear infinite;
+
+    margin: 20px auto;
+}
+
+@keyframes spin {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

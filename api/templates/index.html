@@ -1,20 +1,161 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
 <head>
-    <title>Fraud Detection</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Online Payment Fraud Detection</title>
+
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
 
-<h1>Online Payment Fraud Detection</h1>
+<div class="header-container">
+    <h1>Online Payment Fraud Detection</h1>
 
-<p>Machine Learning API</p>
+    <p>
+        Predict whether an online payment transaction is fraudulent
+        using a Machine Learning model.
+    </p>
 
-<a href="/docs">
-Swagger Documentation
-</a>
+    <a href="/docs">
+        API Documentation (Swagger)
+    </a>
+
+    <hr>
+</div>
+
+<div class="main-content">
+    <div class="container">
+        <h2>Transaction Details</h2>
+
+        <form id="fraudForm">
+            <label for="step">Step: </label>
+            <input 
+                type="number" 
+                id="step" 
+                placeholder="Enter transaction step" 
+                required
+                class="long-input"
+            >
+            <br><br>
+
+            <label for="type">Transaction Type: </label>
+            <select id="type" required class="long-input">
+                <option value="" disabled selected>
+                    Select transaction type
+                </option>
+
+                <option value="TRANSFER">TRANSFER</option>
+                <option value="PAYMENT">PAYMENT</option>
+                <option value="DEBIT">DEBIT</option>
+                <option value="CASH_IN">CASH_IN</option>
+                <option value="CASH_OUT">CASH_OUT</option>
+            </select>
+            <br><br>
+
+            <label for="amount">Amount: </label>
+            <input
+                type="number"
+                id="amount"
+                placeholder="Enter transaction amount"
+                required
+                class="long-input"
+            >
+            <br><br>
+
+            <label for="nameOrig">Origin Account: </label>
+            <input
+                type="text"
+                id="nameOrig"
+                placeholder="Enter origin account ID"
+                class="long-input"
+            >
+            <br><br>
+
+            <label for="oldbalanceOrg">Old Origin Balance: </label>
+            <input
+                type="number"
+                id="oldbalanceOrg"
+                placeholder="Enter old origin balance"
+                required
+                class="long-input"
+            >
+            <br><br>
+
+            <label for="newbalanceOrig">New Origin Balance: </label>
+            <input
+                type="number"
+                id="newbalanceOrig"
+                placeholder="Enter new origin balance"
+                required
+                class="long-input"
+            >
+            <br><br>
+            <label for="nameDest">Destination Account: </label>
+            <input
+                type="text"
+                id="nameDest"
+                placeholder="Enter destination account ID"
+                class="long-input"
+            >
+            <br><br>
+
+            <label for="oldbalanceDest">Old Destination Balance: </label>
+            <input
+                type="number"
+                id="oldbalanceDest"
+                placeholder="Enter old destination balance"
+                required
+                class="long-input"
+            >
+            <br><br>
+            <label for="newbalanceDest">New Destination Balance: </label>
+            <input
+                type="number"
+                id="newbalanceDest"
+                placeholder="Enter new destination balance"
+                required
+                class="long-input"
+            >
+            <br><br>
+
+            <button
+                id="predictBtn"
+                type="button"
+            >
+                Predict Transaction
+            </button>
+
+        </form>
+    </div>
+    <div class="prediction-card">
+        <div id="loading-spinner" class="spinner"></div>
+        <h2>Prediction Result</h2>
+
+        <p>
+            <strong>Status</strong>
+        </p>
+
+        <h3 id="prediction">
+            Waiting...
+        </h3>
+
+        <p>
+            <strong>Fraud Percentage</strong>
+        </p>
+
+        <h3 id="percentage">
+            --
+        </h3>
+
+    </div>
+</div>
+
+<script src="/static/script.js"></script>
 
 </body>
 
