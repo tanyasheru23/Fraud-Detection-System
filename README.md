@@ -9,7 +9,7 @@ A production-style Machine Learning project for detecting fraudulent online paym
 > - Model Training & Evaluation ✅
 > - Modular Python Package ✅
 > - Model Serialization & Inference Pipeline ✅
-> - FastAPI Backend 🚧
+> - FastAPI Backend ✅
 > - Frontend 🚧
 > - Docker Deployment 🚧
 
@@ -49,6 +49,10 @@ The project has been refactored from a notebook into a modular Python package, m
 Fraud-Detection-System/
 │
 ├── api/                 # FastAPI backend (WIP)
+│   ├── main.py
+│   ├── schema.py
+│   ├── templates/
+│   │   ├── index.html
 ├── data/
 ├── models/
 ├── notebooks/
@@ -132,7 +136,7 @@ The optimized Random Forest generalized well on unseen data with nearly identica
 - Matplotlib
 - Seaborn
 - Joblib
-- FastAPI *(Upcoming)*
+- FastAPI 
 
 ---
 
@@ -149,10 +153,10 @@ Completed
 - Feature Importance Analysis
 - Model Serialization
 - Reusable Inference Pipeline
+- FastAPI Backend
 
 Upcoming
 
-- FastAPI Backend
 - Interactive Frontend
 - Docker Containerization
 - Cloud Deployment
