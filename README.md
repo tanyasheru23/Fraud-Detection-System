@@ -1,6 +1,6 @@
 # Online Payment Fraud Detection
 
-A production-style Machine Learning project for detecting fraudulent online payment transactions using feature engineering, ensemble learning, and a modular inference pipeline.
+A production-style Machine Learning project for detecting fraudulent online payment transactions using feature engineering, ensemble learning, and a modular FastAPI inference pipeline.
 
 > **Project Status**
 >
@@ -27,10 +27,12 @@ This project implements an end-to-end fraud detection pipeline, covering the com
 - Model Training
 - Hyperparameter Optimization
 - Model Evaluation
+- Feature Importance Analysis
 - Model Serialization
 - Reusable Inference Pipeline
+- REST API using FastAPI
 
-The project has been refactored from a notebook into a modular Python package, making it suitable for deployment through a REST API.
+The notebook implementation has been refactored into a modular Python package, making it suitable for deployment and real-world inference.
 
 ---
 
@@ -48,15 +50,22 @@ The project has been refactored from a notebook into a modular Python package, m
 ```text
 Fraud-Detection-System/
 │
-├── api/                 # FastAPI backend (WIP)
+├── api/
 │   ├── main.py
 │   ├── schema.py
-│   ├── templates/
-│   │   ├── index.html
+│   └── templates/
+│       └── index.html
+│
 ├── data/
+│   ├── raw/
+│   └── processed/
+│
 ├── models/
+│
 ├── notebooks/
+│
 ├── results/
+│
 ├── src/
 │   ├── config.py
 │   ├── feature_engineering.py
@@ -65,8 +74,8 @@ Fraud-Detection-System/
 │   ├── inference.py
 │   └── utils.py
 │
-├── README.md
 ├── requirements.txt
+├── README.md
 └── Dockerfile
 ```
 
@@ -77,12 +86,12 @@ Fraud-Detection-System/
 - Exploratory Data Analysis
 - Feature Engineering
 - Data Preprocessing
-- Random Forest Training
+- Baseline Model Training
 - Hyperparameter Optimization
 - Model Evaluation
 - Feature Importance Analysis
 - Model Serialization
-- Inference Pipeline
+- FastAPI Inference Pipeline
 
 ---
 
@@ -92,13 +101,13 @@ Fraud-Detection-System/
 - Random Forest
 - XGBoost
 
-After experimentation and hyperparameter tuning, the optimized Random Forest model was selected as the final production model.
+After experimentation and hyperparameter optimization, the optimized Random Forest model was selected as the final production model.
 
 ---
 
 # Feature Engineering
 
-Domain-inspired features include:
+Several domain-inspired features were engineered, including:
 
 - Balance Difference
 - Balance Error
@@ -109,6 +118,8 @@ Domain-inspired features include:
 - Zero Balance Indicators
 - Balance Change Indicators
 - Cash Transfer Indicator
+
+These engineered features significantly improved fraud detection performance compared to using the raw dataset alone.
 
 ---
 
@@ -122,7 +133,125 @@ Domain-inspired features include:
 | F1 Score | **99.88%** |
 | ROC-AUC | **99.92%** |
 
-The optimized Random Forest generalized well on unseen data with nearly identical training and testing performance while missing only four fraudulent transactions in the held-out test set.
+The optimized Random Forest generalized well on unseen data while missing only four fraudulent transactions in the held-out test set.
+
+---
+
+# Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/tanyasheru23/Fraud-Detection-System.git
+
+cd Fraud-Detection-System
+```
+
+Create a virtual environment
+
+```bash
+python -m venv .venv
+```
+
+Activate the environment
+
+### Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+### Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+Install the dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Training
+
+Place the PaySim dataset inside:
+
+```text
+data/raw/
+```
+
+Run the training pipeline
+
+```bash
+python -m src.train
+```
+
+Training automatically:
+
+- Performs feature engineering
+- Preprocesses the dataset
+- Trains the optimized Random Forest model
+- Evaluates model performance
+- Saves the trained model
+- Saves feature columns
+- Stores evaluation artifacts inside the `results/` directory
+
+---
+
+# Running the API
+
+Start the FastAPI server
+
+```bash
+uvicorn api.main:app --reload
+```
+
+Once the server starts:
+
+Swagger Documentation
+
+```
+http://127.0.0.1:8000/docs
+```
+
+Home Page
+
+```
+http://127.0.0.1:8000/
+```
+
+---
+
+# Example Prediction Request
+
+```json
+{
+    "step": 1,
+    "type": "TRANSFER",
+    "amount": 181.00,
+    "nameOrig": "C123456789",
+    "oldbalanceOrg": 181.00,
+    "newbalanceOrig": 0.00,
+    "nameDest": "C987654321",
+    "oldbalanceDest": 0.00,
+    "newbalanceDest": 181.00
+}
+```
+
+---
+
+# Example API Response
+
+```json
+{
+    "is_fraud": true,
+    "fraud_percentage": 99.87,
+    "prediction": "Fraud Transaction"
+}
+```
 
 ---
 
@@ -135,33 +264,33 @@ The optimized Random Forest generalized well on unseen data with nearly identica
 - XGBoost
 - Matplotlib
 - Seaborn
+- FastAPI
+- Pydantic
 - Joblib
-- FastAPI 
 
 ---
 
 # Current Progress
 
-Completed
+## Completed
 
-- End-to-End EDA
+- End-to-End Exploratory Data Analysis
 - Feature Engineering
-- Data Preprocessing
-- Model Training
+- Data Preprocessing Pipeline
+- Model Training & Evaluation
 - Hyperparameter Optimization
-- Model Evaluation
 - Feature Importance Analysis
 - Model Serialization
 - Reusable Inference Pipeline
 - FastAPI Backend
 
-Upcoming
+## Upcoming
 
 - Interactive Frontend
 - Docker Containerization
 - Cloud Deployment
 - SHAP Explainability
-- Real-time Prediction API
+- Real-time Prediction Dashboard
 
 ---
 
@@ -173,3 +302,4 @@ Upcoming
 - Sequence-aware Fraud Detection
 - Real-time Streaming Inference
 - CI/CD Pipeline
+- Cloud Deployment
