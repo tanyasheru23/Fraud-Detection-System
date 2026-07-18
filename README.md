@@ -272,7 +272,7 @@ http://127.0.0.1:8000/docs
 <img width="1230" height="863" alt="Screenshot 2026-07-18 183851" src="https://github.com/user-attachments/assets/c398defa-2e98-42a5-a15e-234e72ab36f2" />
 
 - Fraud Transaction
-- <img width="1247" height="860" alt="Screenshot 2026-07-18 183813" src="https://github.com/user-attachments/assets/e40fbf92-6c0f-41fa-8301-fcb97016c487" />
+<img width="1247" height="860" alt="Screenshot 2026-07-18 183813" src="https://github.com/user-attachments/assets/e40fbf92-6c0f-41fa-8301-fcb97016c487" />
 
 ---
 
