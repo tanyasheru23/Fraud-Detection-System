@@ -11,8 +11,6 @@ A production-style Machine Learning project for detecting fraudulent online paym
 > - Model Serialization & Inference Pipeline ✅
 > - FastAPI Backend ✅
 > - Interactive Frontend ✅
-> - Docker Deployment 🚧
-> - Cloud Deployment 🚧
 
 ---
 
@@ -319,13 +317,6 @@ http://127.0.0.1:8000/docs
 - Reusable Inference Pipeline
 - FastAPI Backend
 - Interactive Frontend
-
-## Upcoming
-
-- Docker Containerization
-- Cloud Deployment
-- SHAP Explainability
-- Model Monitoring
 
 ---
 
