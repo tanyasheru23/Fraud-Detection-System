@@ -11,8 +11,12 @@ class Transaction(BaseModel):
     oldbalanceDest: float
     newbalanceDest: float
 
+class FeatureContribution(BaseModel):
+    feature: str
+    contribution: float
 
 class FraudPrediction(BaseModel):
     is_fraud: bool
     fraud_percentage: float
     prediction: str
+    top_features: list[FeatureContribution]

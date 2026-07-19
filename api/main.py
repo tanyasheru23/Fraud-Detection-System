@@ -14,8 +14,7 @@ from src.inference import predict
 from fastapi.staticfiles import StaticFiles
 from src.utils import load_model
 
-model, feature_columns = load_model()
-
+model, feature_columns, explainer = load_model()
 
 app = FastAPI(
     title="Online Payment Fraud Detection API",
@@ -52,10 +51,11 @@ def prediction_result(transaction: Transaction):
 
     try:
 
-        prediction, probability = predict(
+        prediction, probability, top_features = predict(
             transaction.model_dump(),
             model,
-            feature_columns
+            feature_columns,
+            explainer
         )
 
         result = (
@@ -67,7 +67,8 @@ def prediction_result(transaction: Transaction):
         return FraudPrediction(
             is_fraud=bool(prediction),
             fraud_percentage=round(probability * 100, 2),
-            prediction=result
+            prediction=result,
+            top_features=top_features
         )
 
     except Exception as e:

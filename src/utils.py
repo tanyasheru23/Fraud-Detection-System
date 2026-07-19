@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
+import shap
 
 def save_model(model, feature_columns):
     print("Saving Model...")
@@ -86,9 +87,15 @@ def load_model():
         tuple:
             model
             feature_columns
+            explainer
     """
 
     model = joblib.load("models/fraud_detector_rf.pkl")
     feature_columns = joblib.load("models/feature_columns.pkl")
+    explainer = shap.TreeExplainer(model)
 
-    return model, feature_columns
+    return (
+        model,
+        feature_columns,
+        explainer
+    )

@@ -83,9 +83,9 @@ h1{
 
 .prediction-card{
 
-    width:300px;
+    width:320px;
 
-    height:420px;
+    min-height:620px;
 
     background:white;
 
@@ -104,7 +104,7 @@ h1{
 
     text-align:center;
 
-    padding:20px;
+    padding: 35px 30px;
 }
 
 
@@ -121,9 +121,8 @@ h2{
 
     font-size:28px;
 
-    color:#16a34a;
-
     margin-bottom:30px;
+
 }
 
 
@@ -242,4 +241,67 @@ hr{
     100% {
         transform: rotate(360deg);
     }
+}
+
+.top-features{
+    width:100%;
+    margin-top:15px;
+}
+
+#top-features{
+    list-style:none;
+    padding:0;
+    margin-top:20px;
+}
+
+#top-features li{
+    background:#f5f8ff;
+
+    border-left:4px solid #2f6fed;
+
+    border-radius:8px;
+
+    padding:10px 14px;
+
+    margin-bottom:12px;
+
+    color:#374151;
+
+    font-size:15px;
+
+    line-height:1.4;
+}
+
+#percentage{
+
+    font-size:40px;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+    margin:15px 0;
+}
+
+#prediction{
+    font-size:36px;
+    font-weight:700;
+    margin:20px 0;
+    transition:0.3s ease;
+}
+
+.fraud{
+
+    color:#dc2626;
+
+    font-weight:700;
+
+}
+
+.legitimate{
+
+    color:#16a34a;
+
+    font-weight:700;
+
 }

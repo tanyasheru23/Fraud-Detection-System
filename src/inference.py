@@ -13,7 +13,7 @@ from .pre_processing import process
 from .utils import load_model
 
 
-def predict(data: dict, model, feature_columns):
+def predict(data: dict, model, feature_columns, explainer):
     """
     Predict whether a transaction is fraudulent.
 
@@ -53,7 +53,39 @@ def predict(data: dict, model, feature_columns):
     prediction = model.predict(data_df)[0]
     probability = model.predict_proba(data_df)[0][1]
 
-    return prediction, probability
+    explanation = explainer(data_df)
+    print(explanation.values.shape)
+    shap_df = pd.DataFrame({
+        "feature": feature_columns,
+        "value": explanation.values[0, :, 1]
+    })
+
+    shap_df["importance"] = (
+        shap_df["value"].abs()
+    )
+
+    shap_df = shap_df.sort_values(
+        "importance",
+        ascending=False
+    )
+    
+    top_features = shap_df.head(3).copy()
+
+    total = top_features["importance"].sum()
+
+    top_features["contribution"] = (
+        top_features["importance"] / total * 100
+    )
+
+    top_features = (
+        top_features[
+            ["feature", "contribution"]
+        ]
+        .round(2)
+        .to_dict("records")
+    )
+
+    return prediction, probability, top_features
 
 
 def main():
@@ -85,7 +117,9 @@ def main():
         "newbalanceDest": 0.0
     }
 
-    prediction, probability = predict(fraud_sample)
+    model, feature_columns, explainer = load_model()
+
+    prediction, probability, top_features = predict(fraud_sample, model, feature_columns, explainer)
 
     print("=" * 40)
     print("Fraud Detection Result")
@@ -97,6 +131,9 @@ def main():
         print("Prediction : Fraud Transaction")
     else:
         print("Prediction : Legitimate Transaction")
+
+    print("Top Features Contributing to the results: ")
+    print(top_features)
 
 
 if __name__ == "__main__":
