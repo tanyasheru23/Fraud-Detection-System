@@ -104,6 +104,9 @@ Random Forest
 Model Serialization
       │
       ▼
+SHAP Explainability
+      │
+      ▼
 FastAPI Backend
       │
       ▼
@@ -149,6 +152,22 @@ These engineered features significantly improved fraud detection performance ove
 | ROC-AUC | **99.92%** |
 
 The optimized Random Forest generalized well on unseen data while missing only four fraudulent transactions in the held-out test dataset.
+
+---
+
+## Model Explainability
+
+To improve prediction transparency, the project integrates **SHAP (SHapley Additive Explanations)** for local model interpretability.
+
+For every prediction, the API identifies the three most influential engineered features contributing to the model's decision. These explanations are returned alongside the fraud probability and displayed in the frontend, allowing users to understand *why* a transaction was classified as fraudulent or legitimate.
+
+Example explanation:
+
+- Entire Balance Transferred (75.6%)
+- Origin Balance Error (15.9%)
+- Fraction of Balance Used (8.5%)
+
+This makes the model more interpretable and suitable for real-world financial applications where prediction transparency is important.
 
 ---
 
@@ -266,11 +285,13 @@ http://127.0.0.1:8000/docs
 }
 ```
 # Web Page - Example Fraud Predictions
-- Legitimate Transaction
-<img width="1230" height="863" alt="Screenshot 2026-07-18 183851" src="https://github.com/user-attachments/assets/c398defa-2e98-42a5-a15e-234e72ab36f2" />
 
-- Fraud Transaction
-<img width="1247" height="860" alt="Screenshot 2026-07-18 183813" src="https://github.com/user-attachments/assets/e40fbf92-6c0f-41fa-8301-fcb97016c487" />
+### Legitimate Transaction
+<img width="1918" height="857" alt="Screenshot 2026-07-19 203408" src="https://github.com/user-attachments/assets/3eaba7fb-e441-459d-88e3-1d67186826de" />
+
+### Fraud Transaction
+<img width="1918" height="862" alt="Screenshot 2026-07-19 203245" src="https://github.com/user-attachments/assets/019436f4-28d8-4e30-b7bc-7486e4ac80de" />
+
 
 ---
 
@@ -284,6 +305,7 @@ http://127.0.0.1:8000/docs
 - Scikit-learn
 - XGBoost
 - Joblib
+- SHAP
 
 ### Backend
 
@@ -315,6 +337,7 @@ http://127.0.0.1:8000/docs
 - Feature Importance Analysis
 - Model Serialization
 - Reusable Inference Pipeline
+- SHAP Explainability
 - FastAPI Backend
 - Interactive Frontend
 
@@ -322,12 +345,11 @@ http://127.0.0.1:8000/docs
 
 # Future Improvements
 
-- Docker Support
-- Cloud Deployment
-- SHAP Explainability
-- Drift Detection
 - Model Monitoring
+- Drift Detection
+- Streaming Fraud Detection
 - Sequence-aware Fraud Detection
+- Explainability Dashboard
 - CI/CD Pipeline
 
 ---
